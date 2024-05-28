@@ -1,4 +1,4 @@
-import { create } from "domain";
+
 import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema({

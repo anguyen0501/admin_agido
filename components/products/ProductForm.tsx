@@ -75,6 +75,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
           collections: initialData.collections.map(
             (collection) => collection._id
           ),
+          category: initialData.category[0], // Fix: Assign the first element of the array to category
         }
       : {
           title: "",

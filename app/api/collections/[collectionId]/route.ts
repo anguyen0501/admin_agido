@@ -10,7 +10,10 @@ export const GET = async (
 ) => {
   try {
     await connectToDB();
-    const collection = await Collection.findById(params.collectionId);
+    const collection = await Collection.findById(params.collectionId).populate({
+      path: "products",
+      model: Product,
+    });
     if (!collection) {
       return new NextResponse(
         JSON.stringify({ message: "Collection not found" }),
@@ -84,11 +87,11 @@ export const DELETE = async (
       { $pull: { collections: params.collectionId } }
     );
 
-    
-
     return new NextResponse("Collection deleted", { status: 200 });
   } catch (error) {
     console.log("[collectionId_DELETE]", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
+
+export const dynamic = "force-dynamic";
